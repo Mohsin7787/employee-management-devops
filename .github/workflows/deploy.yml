@@ -17,6 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify settings before Docker build
+        run: |
+          echo "Git commit:"
+          git rev-parse HEAD
+
+          echo "Settings file:"
+          grep -nE 'DEBUG|ALLOWED_HOSTS' employee_mgmt/settings.py
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
