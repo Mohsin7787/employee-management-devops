@@ -42,6 +42,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "django_prometheus",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +53,9 @@ INSTALLED_APPS = [
 ]
 STATIC_URL = 'static/'
 MIDDLEWARE = [
+     "django_prometheus.middleware.PrometheusBeforeMiddleware",
+    # your existing middleware...
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
