@@ -41,6 +41,12 @@ jobs:
         run: |
           docker build -t ${{ vars.ECR_REPOSITORY }}:latest .
 
+      - name: Verify settings inside Docker image
+        run: |
+          echo "Checking settings.py inside Docker image:"
+          docker run --rm ${{ vars.ECR_REPOSITORY }}:latest \
+          sh -c "grep -nE 'DEBUG|ALLOWED_HOSTS' /app/employee_mgmt/settings.py"
+
       - name: Tag Docker image
         run: |
           docker tag \
