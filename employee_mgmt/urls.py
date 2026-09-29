@@ -22,6 +22,5 @@ urlpatterns = [
      # your existing paths...
     path("metrics/", exports.ExportToDjangoView, name="metrics"),
     path('admin/', admin.site.urls),
-    path('metrics/', exports.ExportToDjangoView, name='metrics'),
     path('', include('employees.urls')),
 ]
